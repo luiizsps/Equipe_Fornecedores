@@ -1,17 +1,17 @@
-package br.edu.ufrb.gcet236.teste;
+package br.edu.ufrb.gcet236.equipe_fornecedores;
 
 public class Fornecedor {
-  private long cnpj;
+  private String cnpj;
   private String nome;
   private String endereço;
-  private long telefone;
+  private String telefone;
   private String email;
 
-  public long getCnpj() {
+  public String getCnpj() {
     return this.cnpj;
   }
 
-  public void setCnpj(long cnpj) {
+  public void setCnpj(String cnpj) {
     this.cnpj = cnpj;
   }
 
@@ -31,11 +31,11 @@ public class Fornecedor {
     this.endereço = endereço;
   }
   
-  public long getTelefone() {
+  public String getTelefone() {
     return this.telefone;
   }
 
-  public void setTelefone(long telefone) {
+  public void setTelefone(String telefone) {
     this.telefone = telefone;
   }
 

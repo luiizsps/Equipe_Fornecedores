@@ -1,4 +1,5 @@
-package br.edu.ufrb.gcet236.teste;
+package br.edu.ufrb.gcet236.equipe_fornecedores;
+
 import java.util.ArrayList;
 
 public class ListaFornecedor {
@@ -16,7 +17,7 @@ public void addFornecedor(Fornecedor fornecedor) {
   // ********** BUSCA ************ //
 
   // Função de busca por CNPJ
-  public Fornecedor buscaPorCNPJ(long cnpj) {
+  public Fornecedor buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
       if(fornecedor.getCnpj() == cnpj) {

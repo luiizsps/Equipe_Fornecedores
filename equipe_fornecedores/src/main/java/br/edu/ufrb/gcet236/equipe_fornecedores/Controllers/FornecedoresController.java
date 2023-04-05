@@ -1,4 +1,4 @@
-package br.edu.ufrb.gcet236.teste.Controller;
+package br.edu.ufrb.gcet236.equipe_fornecedores.Controllers;
 
 import java.util.ArrayList;
 
@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.edu.ufrb.gcet236.teste.Fornecedor;
-import br.edu.ufrb.gcet236.teste.ListaFornecedor;
+
+import br.edu.ufrb.gcet236.equipe_fornecedores.Fornecedor;
+import br.edu.ufrb.gcet236.equipe_fornecedores.ListaFornecedor;
 
 @RestController
 @RequestMapping(value = "/fornecedores")
-public class TesteController {
-
+public class FornecedoresController {
   ListaFornecedor lista = new ListaFornecedor();
 
   @PostMapping(value = "/add")
@@ -21,7 +21,7 @@ public class TesteController {
     lista.addFornecedor(fornecedor);
   }
   
-  @GetMapping
+  @GetMapping(value = "/all")
   public ArrayList<Fornecedor> getall() { 
     return lista.getListaDeFornecedores();
   }

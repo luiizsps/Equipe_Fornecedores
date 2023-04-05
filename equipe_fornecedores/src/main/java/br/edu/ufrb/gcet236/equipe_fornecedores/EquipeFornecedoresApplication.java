@@ -1,13 +1,13 @@
-package br.edu.ufrb.gcet236.grupo_fornecedores;
+package br.edu.ufrb.gcet236.equipe_fornecedores;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GrupoFornecedoresApplication {
+public class EquipeFornecedoresApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GrupoFornecedoresApplication.class, args);
+		SpringApplication.run(EquipeFornecedoresApplication.class, args);
 	}
 
 }
