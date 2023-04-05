@@ -3,6 +3,7 @@ package br.edu.ufrb.gcet236.equipe_fornecedores.Controllers;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +25,12 @@ public class FornecedoresController {
   @GetMapping(value = "/all")
   public ArrayList<Fornecedor> getall() { 
     return lista.getListaDeFornecedores();
+  }
+
+  @GetMapping(value = "/search/{cnpj}")
+  public Fornecedor searchByCNPJ(@PathVariable long cnpj) {
+    Fornecedor resultado = lista.buscaPorCNPJ(cnpj+"");
+
+    return resultado;
   }
 }

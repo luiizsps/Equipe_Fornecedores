@@ -20,7 +20,7 @@ public void addFornecedor(Fornecedor fornecedor) {
   public Fornecedor buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getCnpj() == cnpj) {
+      if(fornecedor.getCnpj().equalsIgnoreCase(cnpj)) {
         return fornecedor;
       }
     }
