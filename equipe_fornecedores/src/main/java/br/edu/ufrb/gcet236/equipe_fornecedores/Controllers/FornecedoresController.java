@@ -23,13 +23,13 @@ public class FornecedoresController {
   }
   
   @GetMapping(value = "/all")
-  public ArrayList<Fornecedor> getall() { 
+  public ArrayList<Fornecedor> getAll() { 
     return lista.getListaDeFornecedores();
   }
 
   @GetMapping(value = "/search/{cnpj}")
-  public Fornecedor searchByCNPJ(@PathVariable long cnpj) {
-    Fornecedor resultado = lista.buscaPorCNPJ(cnpj+"");
+  public Fornecedor searchByCNPJ(@PathVariable String cnpj) {
+    Fornecedor resultado = lista.buscaPorCNPJ(cnpj);
 
     return resultado;
   }
