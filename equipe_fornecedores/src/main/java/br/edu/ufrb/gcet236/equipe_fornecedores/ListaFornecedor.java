@@ -5,18 +5,31 @@ import java.util.ArrayList;
 public class ListaFornecedor {
 
   private ArrayList<Fornecedor> listaDeFornecedores = new ArrayList<>();
+  private ArrayList<String> listaDeNomesECNPJs = new ArrayList<>();
+  
   private Fornecedor fornecedor_nulo = new Fornecedor();
 
   public ArrayList<Fornecedor> getListaDeFornecedores() {
     return this.listaDeFornecedores;
   }
 
-public void addFornecedor(Fornecedor fornecedor) {
-  listaDeFornecedores.add(fornecedor);
-}
+  public void addFornecedor(Fornecedor fornecedor) {
+    listaDeFornecedores.add(fornecedor);
+  }
+
   // ********** BUSCA ************ //
 
   // Função de busca por CNPJ
+
+  public ArrayList<String> listNameAndCnpj() {
+    for(Fornecedor fornecedor : listaDeFornecedores) {
+      String nomeECNPJ = "Nome: "+fornecedor.getNome()+" CNPJ: "+fornecedor.getCnpj();
+      listaDeNomesECNPJs.add(nomeECNPJ);
+    }
+    return listaDeNomesECNPJs;
+  }
+
+
   public Fornecedor buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -32,11 +45,10 @@ public void addFornecedor(Fornecedor fornecedor) {
   public Fornecedor buscaPorNome(String nome) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getNome() == nome) {
+      if(fornecedor.getNome().equalsIgnoreCase(nome)) {
         return fornecedor;
       }
     }
-
     return fornecedor_nulo;
   }
 
@@ -46,12 +58,14 @@ public void addFornecedor(Fornecedor fornecedor) {
     int size = parteDoNome.length();
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getNome().substring(0, size) == parteDoNome) {
-        fornecedores.add(fornecedor);
+      if(!(fornecedor.getNome().length() < parteDoNome.length())){
+        String part = fornecedor.getNome().substring(0, size);
+        if(part.equalsIgnoreCase(parteDoNome)) {
+          fornecedores.add(fornecedor);
+        }
       }
     }
 
     return fornecedores;
   }
-
 }

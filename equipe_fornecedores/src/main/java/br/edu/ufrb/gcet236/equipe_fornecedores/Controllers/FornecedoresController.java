@@ -27,10 +27,27 @@ public class FornecedoresController {
     return lista.getListaDeFornecedores();
   }
 
-  @GetMapping(value = "/search/{cnpj}")
+  @GetMapping(value = "/search/CNPJ:{cnpj}")
   public Fornecedor searchByCNPJ(@PathVariable String cnpj) {
     Fornecedor resultado = lista.buscaPorCNPJ(cnpj);
 
     return resultado;
+  }
+
+  @GetMapping(value = "/nameAndCNPJ")
+  public ArrayList<String> nameAndCNPJ() {
+    return lista.listNameAndCnpj();
+  }
+
+  @GetMapping(value = "/search/NAME:{name}")
+  public Fornecedor searchByName(@PathVariable String name) {
+    Fornecedor resultado = lista.buscaPorNome(name);
+
+    return resultado;
+  }
+
+  @GetMapping(value = "/search/PART:{name}")
+  public ArrayList<Fornecedor> searchByPartOfName(@PathVariable String name) {
+    return lista.buscaPorParteDoNome(name);
   }
 }
