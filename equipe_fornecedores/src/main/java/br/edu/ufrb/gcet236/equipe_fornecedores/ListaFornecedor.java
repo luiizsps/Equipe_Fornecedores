@@ -20,7 +20,6 @@ public class ListaFornecedor {
   // ********** BUSCA ************ //
 
   // Função de busca por CNPJ
-
   public ArrayList<String> listNameAndCnpj() {
     for(Fornecedor fornecedor : listaDeFornecedores) {
       String nomeECNPJ = "Nome: "+fornecedor.getNome()+" CNPJ: "+fornecedor.getCnpj();
@@ -33,7 +32,7 @@ public class ListaFornecedor {
   public Fornecedor buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getCnpj().equalsIgnoreCase(cnpj)) {
+      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))) {
         return fornecedor;
       }
     }
@@ -43,9 +42,8 @@ public class ListaFornecedor {
 
   // Função de busca por nome
   public Fornecedor buscaPorNome(String nome) {
-
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getNome().equalsIgnoreCase(nome)) {
+      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
         return fornecedor;
       }
     }
@@ -55,17 +53,38 @@ public class ListaFornecedor {
   // Função de busca por parte do nome
   public ArrayList<Fornecedor> buscaPorParteDoNome(String parteDoNome) {
     ArrayList<Fornecedor> fornecedores = new ArrayList<>();
-    int size = parteDoNome.length();
-
+    String parteNome = parteDoNome.replace(" ", "");
+    int size = parteNome.length();
+    
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(!(fornecedor.getNome().length() < parteDoNome.length())){
-        String part = fornecedor.getNome().substring(0, size);
-        if(part.equalsIgnoreCase(parteDoNome)) {
+      String nome = fornecedor.getNome().replace(" ", "");
+      if(nome.length() >= size) {
+        String part = nome.substring(0, size);
+        if(part.equalsIgnoreCase(parteNome)) {
           fornecedores.add(fornecedor);
         }
       }
     }
 
     return fornecedores;
+  }
+
+
+  // ********** REMOVER ************ //
+
+  // Busca por cnpj e retorna posição
+  public int buscaPorCNPJEPosicao(String cnpj) {
+    int i=0;
+    for(Fornecedor fornecedor : listaDeFornecedores) {
+      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  public void removeByIndex(int index) {
+    if(index != -1) listaDeFornecedores.remove(index);
   }
 }
