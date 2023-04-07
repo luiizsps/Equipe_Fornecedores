@@ -93,4 +93,5 @@ public class ListaFornecedor {
         JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum fornecedor.");
       }
     }
+    //Solicitar o CNPK
   } 
