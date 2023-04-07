@@ -69,7 +69,7 @@ public class ListaFornecedor {
     return fornecedores;
   }
 
-/* 
+
   // ********** REMOVER ************ //
 
   // Busca por cnpj e retorna posição
@@ -84,43 +84,13 @@ public class ListaFornecedor {
     return -1;
   }
 
-  public void removeByIndex(int index) {
-    if(index != -1) listaDeFornecedores.remove(index);
-  }
-  */
-  
-  //******Remoção***********/
-//Remove os dados de acordo com o cnpj inserido
-public ArrayList<Fornecedor> remocaoPorCnpj(String cnpj){
-  Scannerr scanner = new Scanner(System.in);
-  System.out.println("Insira o CNPJ que deseja remover os dados:");
-String dado = scanner.nextline();
-//Confere os dados presentes e separa para serem apagados
-ArrayList<String> elementoRemover = new ArrayList<String>();
-  for(Fornecedor elemento : listaDeFornecedores){
-    if(elemento.equals(cnpj)){
-      elementoRemover.add(elemento);
+  public void removeByCnpj(int Cnpj) {
+    int index = buscaPorCNPJEPosicao(cnpj);
+    if(index != -1){
+      String confirmacao = JOptionPane.showInputDialog(null, "Digite Sim, para apagar os dados do fornecedor.");
+      }
+      else{
+        JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum fornecedor.");
+      }
     }
-  }
-//Confirma com o usuário os dados a serem removidos 
-if(elementoRemover.size() > 0){
-System.out.println("Os dados a serem removidos são:");
-for(String elemento : elementoRemover){
-  System.out.println("-" + elemento);
-}
-System.out.println("Deseja realmente remover os dados mostrados?");
-String confirmacao = scanner.nextline();
-if(confirmacao.equalsIgnoreCase("sim")){
-  //Vai remover os dados da String Original
-  lista.RemoveAll(elementoRemover);
-  System.out.println("Os dados foram removidos com sucesso!");
-  System.out.println("Lista atualizada" + listaDeFornecedores);
-} else{
-  System.out.println("A operação foi cancelada pelo usuário.");
-}
-} else {
-System.out.println("Não foram encontrado dados correspondentes ao CNPJ inserido");
-}
-}
-}
-}
+  } 
