@@ -83,7 +83,7 @@ public class ListaFornecedor {
     }
     return -1;
   }
-
+//Teste
   public void removeByIndex(int index) {
     if(index != -1) listaDeFornecedores.remove(index);
   }
