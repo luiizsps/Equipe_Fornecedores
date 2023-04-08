@@ -1,13 +1,11 @@
 package br.edu.ufrb.gcet236.equipe_fornecedores;
-
 import java.util.ArrayList;
 
 public class ListaFornecedor {
 
   private ArrayList<Fornecedor> listaDeFornecedores = new ArrayList<>();
   private ArrayList<String> listaDeNomesECNPJs = new ArrayList<>();
-  
-  private Fornecedor fornecedor_nulo = new Fornecedor();
+  private static String FORNECEDOR_NAO_ENCONTRADO = "O fornecedor procurado não se encontra no banco de dados";
 
   public ArrayList<Fornecedor> getListaDeFornecedores() {
     return this.listaDeFornecedores;
@@ -21,6 +19,7 @@ public class ListaFornecedor {
 
   // Função de busca por CNPJ
   public ArrayList<String> listNameAndCnpj() {
+    listaDeNomesECNPJs.clear();
     for(Fornecedor fornecedor : listaDeFornecedores) {
       String nomeECNPJ = "Nome: "+fornecedor.getNome()+" CNPJ: "+fornecedor.getCnpj();
       listaDeNomesECNPJs.add(nomeECNPJ);
@@ -29,7 +28,7 @@ public class ListaFornecedor {
   }
 
 
-  public Fornecedor buscaPorCNPJ(String cnpj) {
+  public Object buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
       if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))) {
@@ -37,17 +36,17 @@ public class ListaFornecedor {
       }
     }
 
-  return fornecedor_nulo;
+  return FORNECEDOR_NAO_ENCONTRADO;
   }
 
   // Função de busca por nome
-  public Fornecedor buscaPorNome(String nome) {
+  public Object buscaPorNome(String nome) {
     for(Fornecedor fornecedor : listaDeFornecedores) {
       if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
         return fornecedor;
       }
     }
-    return fornecedor_nulo;
+    return FORNECEDOR_NAO_ENCONTRADO;
   }
 
   // Função de busca por parte do nome
@@ -84,14 +83,16 @@ public class ListaFornecedor {
     return -1;
   }
 
-  public void removeByCnpj(int Cnpj) {
+  /*
+  public void removeByCnpj(String cnpj) {
     int index = buscaPorCNPJEPosicao(cnpj);
     if(index != -1){
       String confirmacao = JOptionPane.showInputDialog(null, "Digite Sim, para apagar os dados do fornecedor.");
       }
       else{
-        JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum fornecedor.");
+        return FORNECEDOR_NAO_ENCONTRADO;
       }
     }
-    //Solicitar o CNPK
+    */
+    //Solicitar o CNPJ
   } 
