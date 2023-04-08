@@ -89,8 +89,6 @@ public class ListaFornecedor {
     if(index != -1){
       String confirmacao = JOptionPane.showInputDialog(null, "Digite Sim, para apagar os dados do fornecedor.");
       }
-      else{
-        return FORNECEDOR_NAO_ENCONTRADO;
       }
     }
     */
