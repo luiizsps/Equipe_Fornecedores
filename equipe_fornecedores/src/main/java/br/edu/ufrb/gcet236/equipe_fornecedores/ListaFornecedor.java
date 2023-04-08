@@ -71,7 +71,7 @@ public class ListaFornecedor {
 
   // ********** REMOVER ************ //
 
-  // Busca por cnpj e retorna posição
+  // Remoção por CNPJ sem retorno
   public int buscaPorCNPJEPosicao(String cnpj) {
     int i=0;
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -82,15 +82,16 @@ public class ListaFornecedor {
     }
     return -1;
   }
-
-  /*
-  public void removeByCnpj(String cnpj) {
-    int index = buscaPorCNPJEPosicao(cnpj);
-    if(index != -1){
-      String confirmacao = JOptionPane.showInputDialog(null, "Digite Sim, para apagar os dados do fornecedor.");
-      }
+  /* 
+  public void removeporCnpj(String cnpj) {
+    ListInterator<Fornecedor> it = listaDeFornecedores.listInterator();
+    while(it.hasnext()){
+      Fornecedor fornecedor = it.next();
+      if(fornecedor.getCnpj().replace(" ", " ").equalsIgnoreCase(cnpj.replace(" ", " "))){
+        it.remove();
       }
     }
+  }
     */
     //Solicitar o CNPJ
   } 
