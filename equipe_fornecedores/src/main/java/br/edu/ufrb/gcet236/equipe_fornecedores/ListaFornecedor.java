@@ -93,5 +93,7 @@ public class ListaFornecedor {
     }
   }
     */
-    //Solicitar o CNPJ
-  } 
+  public void alterarDados(int index, Fornecedor fornecedor){
+    listaDeFornecedores.set(index, fornecedor);
+  }
+  }
