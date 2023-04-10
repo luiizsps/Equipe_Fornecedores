@@ -1,5 +1,6 @@
 package br.edu.ufrb.gcet236.equipe_fornecedores_final;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class ListaFornecedor {
 
@@ -17,7 +18,7 @@ public class ListaFornecedor {
 
   // ********** BUSCA ************ //
 
-  // Função de busca por CNPJ
+  
   public ArrayList<String> listNameAndCnpj() {
     listaDeNomesECNPJs.clear();
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -27,7 +28,7 @@ public class ListaFornecedor {
     return listaDeNomesECNPJs;
   }
 
-
+  // Função de busca por CNPJ
   public Object buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -69,37 +70,35 @@ public class ListaFornecedor {
   }
 
   // ********** REMOVER ************ //
-
-  // Remoção por CNPJ sem retorno
-  public int buscaPorCNPJEPosicao(String cnpj) {
-    int i=0;
-    for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))) {
-        return i;
-      }
-      i++;
-    }
-    return -1;
-  }
-
-  // teste
-  public void removeByIndex(int index) {
-    listaDeFornecedores.remove(index);
-  }
-
-  /* 
+ 
   public void removeporCnpj(String cnpj) {
-    ListInterator<Fornecedor> it = listaDeFornecedores.listInterator();
-    while(it.hasnext()){
+    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+
+    while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
       if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
         it.remove();
       }
     }
   }
-  */
 
   public void alterarDados(int index, Fornecedor fornecedor){
     listaDeFornecedores.set(index, fornecedor);
+  }
+
+  // Função de busca por parte do nome
+  public Fornecedor removePorNome(String nome) {
+    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+    Fornecedor fornecedor_removido = new Fornecedor();
+
+    while(it.hasNext()) {
+      Fornecedor fornecedor = it.next();
+      fornecedor_removido = fornecedor;
+      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
+        it.remove();
+      }
+    }
+
+    return fornecedor_removido;
   }
 }
