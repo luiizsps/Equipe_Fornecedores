@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,8 +30,8 @@ public class FornecedoresController {
   }
 
   @GetMapping(value = "/search/cnpj:{cnpj}")
-  public Fornecedor searchByCNPJ(@PathVariable String cnpj) {
-    Fornecedor resultado = lista.buscaPorCNPJ(cnpj);
+  public Object searchByCNPJ(@PathVariable String cnpj) {
+    Object resultado = lista.buscaPorCNPJ(cnpj);
 
     return resultado;
   }
@@ -41,8 +42,8 @@ public class FornecedoresController {
   }
 
   @GetMapping(value = "/search/name:{name}")
-  public Fornecedor searchByName(@PathVariable String name) {
-    Fornecedor resultado = lista.buscaPorNome(name);
+  public Object searchByName(@PathVariable String name) {
+    Object resultado = lista.buscaPorNome(name);
 
     return resultado;
   }
@@ -59,7 +60,6 @@ public class FornecedoresController {
 
     return lista.getListaDeFornecedores();
   }
-}
 
   @PutMapping(value = "/update/{index}")
   public void atualizarFornecedor(@PathVariable int index, @RequestBody Fornecedor fornecedor){

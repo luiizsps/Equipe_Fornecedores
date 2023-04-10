@@ -82,18 +82,26 @@ public class ListaFornecedor {
     }
     return -1;
   }
+
+  // teste
+  public void removeByIndex(int index) {
+    listaDeFornecedores.remove(index);
+  }
+
   /* 
   public void removeporCnpj(String cnpj) {
     ListInterator<Fornecedor> it = listaDeFornecedores.listInterator();
     while(it.hasnext()){
       Fornecedor fornecedor = it.next();
-      if(fornecedor.getCnpj().replace(" ", " ").equalsIgnoreCase(cnpj.replace(" ", " "))){
+      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
         it.remove();
       }
     }
   }
-    */
+  */
+
+
   public void alterarDados(int index, Fornecedor fornecedor){
     listaDeFornecedores.set(index, fornecedor);
   }
-  }
+}
