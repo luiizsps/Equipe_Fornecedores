@@ -18,7 +18,6 @@ public class ListaFornecedor {
 
   // ********** BUSCA ************ //
 
-  
   public ArrayList<String> listNameAndCnpj() {
     listaDeNomesECNPJs.clear();
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -78,6 +77,7 @@ public class ListaFornecedor {
       Fornecedor fornecedor = it.next();
       if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
         it.remove();
+        break;
       }
     }
   }
@@ -96,6 +96,7 @@ public class ListaFornecedor {
       fornecedor_removido = fornecedor;
       if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
         it.remove();
+        break;
       }
     }
 
