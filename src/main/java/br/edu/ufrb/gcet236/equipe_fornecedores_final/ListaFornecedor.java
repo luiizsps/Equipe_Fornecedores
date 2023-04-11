@@ -31,18 +31,18 @@ public class ListaFornecedor {
   public Object buscaPorCNPJ(String cnpj) {
 
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))) {
+      if(compareStrings(fornecedor.getCnpj(), cnpj)) {
         return fornecedor;
       }
     }
 
-  return FORNECEDOR_NAO_ENCONTRADO;
+    return FORNECEDOR_NAO_ENCONTRADO;
   }
 
   // Função de busca por nome
   public Object buscaPorNome(String nome) {
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
+      if(compareStrings(fornecedor.getNome(), nome)) {
         return fornecedor;
       }
     }
@@ -77,7 +77,7 @@ public class ListaFornecedor {
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
       fornecedor_removido = fornecedor;
-      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
+      if(compareStrings(fornecedor.getCnpj(), cnpj)){
         it.remove();
         break;
       }
@@ -94,7 +94,7 @@ public class ListaFornecedor {
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
       fornecedor_removido = fornecedor;
-      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))) {
+      if(compareStrings(fornecedor.getNome(), nome)) {
         it.remove();
         break;
       }
@@ -103,12 +103,14 @@ public class ListaFornecedor {
     return fornecedor_removido;
   }
 
+  // ********** ATUALIZAR ************ //
+
   public void updatePorCnpj(String cnpj, Fornecedor novoFornecedor){
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
 
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
-      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
+      if(compareStrings(fornecedor.getCnpj(), cnpj)){
         it.set(novoFornecedor);
       }
     }
@@ -119,9 +121,15 @@ public class ListaFornecedor {
 
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
-      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))){
+      if(compareStrings(fornecedor.getNome(), nome)){
         it.set(novoFornecedor);
       }
     }
+  }
+
+  // ********** REUTILIZAVEIS ************ //
+
+  public boolean compareStrings(String string1, String string2) {
+    return string1.replace(" ", "").equalsIgnoreCase(string2.replace(" ",""));
   }
 }
