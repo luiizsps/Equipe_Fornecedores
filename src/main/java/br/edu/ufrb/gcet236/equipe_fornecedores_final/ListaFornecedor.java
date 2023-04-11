@@ -102,19 +102,7 @@ public class ListaFornecedor {
 
     return fornecedor_removido;
   }
-
-  // ********** ATUALIZAR ************ //
-  
-  public void updatePorNome(String nome, Fornecedor novoFornecedor){
-    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
-
-    while(it.hasNext()) {
-      Fornecedor fornecedor = it.next();
-      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))){
-        it.set(novoFornecedor);
-      }
-    }
-  }
+}
 
   public void updatePorCnpj(String cnpj, Fornecedor novoFornecedor){
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
