@@ -36,11 +36,6 @@ public class FornecedoresController {
     return resultado;
   }
 
-  @GetMapping(value = "/nameandcnpj")
-  public ArrayList<String> nameAndCNPJ() {
-    return lista.listNameAndCnpj();
-  }
-
   @GetMapping(value = "/search/name:{name}")
   public Object searchByName(@PathVariable String name) {
     Object resultado = lista.buscaPorNome(name);
@@ -51,6 +46,11 @@ public class FornecedoresController {
   @GetMapping(value = "/search/part:{name}")
   public ArrayList<Fornecedor> searchByPartOfName(@PathVariable String name) {
     return lista.buscaPorParteDoNome(name);
+  }
+
+  @GetMapping(value = "/nameandcnpj")
+  public ArrayList<String> nameAndCNPJ() {
+    return lista.listNameAndCnpj();
   }
 
   @DeleteMapping(value = "/remove/cnpj:{cnpj}")

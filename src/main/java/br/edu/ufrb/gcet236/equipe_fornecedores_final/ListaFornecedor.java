@@ -13,7 +13,15 @@ public class ListaFornecedor {
   }
 
   public void addFornecedor(Fornecedor fornecedor) {
-    listaDeFornecedores.add(fornecedor);
+    if(!pertenceALista(fornecedor)) listaDeFornecedores.add(fornecedor);
+  }
+
+  public boolean pertenceALista(Fornecedor fornecedor) {
+    for(Fornecedor fornecedor_aux : listaDeFornecedores) {
+      if(compareStrings(fornecedor_aux.getCnpj(), fornecedor.getCnpj())) return true;
+    }
+
+    return false;
   }
 
   // ********** BUSCA ************ //
@@ -21,9 +29,10 @@ public class ListaFornecedor {
   public ArrayList<String> listNameAndCnpj() {
     listaDeNomesECNPJs.clear();
     for(Fornecedor fornecedor : listaDeFornecedores) {
-      String nomeECNPJ = "Nome: "+fornecedor.getNome()+" CNPJ: "+fornecedor.getCnpj();
+      String nomeECNPJ = "Nome: "+fornecedor.getNome()+"; CNPJ: "+fornecedor.getCnpj();
       listaDeNomesECNPJs.add(nomeECNPJ);
     }
+
     return listaDeNomesECNPJs;
   }
 
@@ -46,6 +55,7 @@ public class ListaFornecedor {
         return fornecedor;
       }
     }
+
     return FORNECEDOR_NAO_ENCONTRADO;
   }
 
@@ -77,7 +87,7 @@ public class ListaFornecedor {
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
       fornecedor_removido = fornecedor;
-      if(compareStrings(fornecedor.getCnpj(), cnpj)){
+      if(compareStrings(fornecedor.getCnpj(), cnpj)) {
         it.remove();
         break;
       }
@@ -110,7 +120,7 @@ public class ListaFornecedor {
 
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
-      if(compareStrings(fornecedor.getCnpj(), cnpj)){
+      if(compareStrings(fornecedor.getCnpj(), cnpj)) {
         it.set(novoFornecedor);
       }
     }
