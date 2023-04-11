@@ -102,7 +102,6 @@ public class ListaFornecedor {
 
     return fornecedor_removido;
   }
-}
 
   public void updatePorCnpj(String cnpj, Fornecedor novoFornecedor){
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
@@ -110,6 +109,17 @@ public class ListaFornecedor {
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
       if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
+        it.set(novoFornecedor);
+      }
+    }
+  }
+
+  public void updatePorNome(String nome, Fornecedor novoFornecedor){
+    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+
+    while(it.hasNext()) {
+      Fornecedor fornecedor = it.next();
+      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))){
         it.set(novoFornecedor);
       }
     }
