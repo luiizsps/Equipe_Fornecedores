@@ -11,11 +11,11 @@ public class ListaFornecedor {
   public ArrayList<Fornecedor> getListaDeFornecedores() {
     return this.listaDeFornecedores;
   }
-
+// Adiciona o fornecedor caso ele já não se encontre na lista
   public void addFornecedor(Fornecedor fornecedor) {
     if(!pertenceALista(fornecedor)) listaDeFornecedores.add(fornecedor);
   }
-
+//Compara se o cnpj do fornecedor encontra-se na lista
   public boolean pertenceALista(Fornecedor fornecedor) {
     for(Fornecedor fornecedor_aux : listaDeFornecedores) {
       if(compareStrings(fornecedor_aux.getCnpj(), fornecedor.getCnpj())) return true;
@@ -26,6 +26,7 @@ public class ListaFornecedor {
 
   // ********** BUSCA ************ //
 
+  //Busca por Nome e Cnpj
   public ArrayList<String> listNameAndCnpj() {
     listaDeNomesECNPJs.clear();
     for(Fornecedor fornecedor : listaDeFornecedores) {
@@ -115,6 +116,7 @@ public class ListaFornecedor {
 
   // ********** ATUALIZAR ************ //
 
+  //atualização por cnpj
   public void updatePorCnpj(String cnpj, Fornecedor novoFornecedor){
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
 
@@ -125,7 +127,7 @@ public class ListaFornecedor {
       }
     }
   }
-
+//atualização por nome
   public void updatePorNome(String nome, Fornecedor novoFornecedor){
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
 
