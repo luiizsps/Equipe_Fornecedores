@@ -70,23 +70,23 @@ public class ListaFornecedor {
 
   // ********** REMOVER ************ //
  
-  public void removeporCnpj(String cnpj) {
+  public Fornecedor removeporCnpj(String cnpj) {
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+    Fornecedor fornecedor_removido = new Fornecedor();
 
     while(it.hasNext()) {
       Fornecedor fornecedor = it.next();
+      fornecedor_removido = fornecedor;
       if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
         it.remove();
         break;
       }
     }
+
+    return fornecedor_removido;
   }
 
-  public void alterarDados(int index, Fornecedor fornecedor){
-    listaDeFornecedores.set(index, fornecedor);
-  }
-
-  // Função de busca por parte do nome
+  // Função de remoção por nome
   public Fornecedor removePorNome(String nome) {
     ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
     Fornecedor fornecedor_removido = new Fornecedor();
@@ -101,5 +101,26 @@ public class ListaFornecedor {
     }
 
     return fornecedor_removido;
+  }
+  public void updatePorNome(String nome, Fornecedor novoFornecedor){
+    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+
+    while(it.hasNext()) {
+      Fornecedor fornecedor = it.next();
+      if(fornecedor.getNome().replace(" ", "").equalsIgnoreCase(nome.replace(" ", ""))){
+        it.set(novoFornecedor);
+      }
+    }
+  }
+
+  public void updatePorCnpj(String cnpj, Fornecedor novoFornecedor){
+    ListIterator<Fornecedor> it = listaDeFornecedores.listIterator();
+
+    while(it.hasNext()) {
+      Fornecedor fornecedor = it.next();
+      if(fornecedor.getCnpj().replace(" ", "").equalsIgnoreCase(cnpj.replace(" ", ""))){
+        it.set(novoFornecedor);
+      }
+    }
   }
 }
