@@ -68,8 +68,13 @@ public class FornecedoresController {
     return fornecedor_removido;
   }
 
-  @PutMapping(value = "/update/{index}")
-  public void atualizarFornecedor(@PathVariable int index, @RequestBody Fornecedor fornecedor){
-    lista.alterarDados(index, fornecedor);
+  @PutMapping(value = "/update/cnpj:{cnpj}")
+  public void atualizarFornecedorPorCNPJ(@PathVariable String cnpj, @RequestBody Fornecedor fornecedor) {
+    lista.updatePorCnpj(cnpj, fornecedor);
+  }
+
+  @PutMapping(value = "/update/nome:{nome}")
+  public void atualizarFornecedorPorNome(@PathVariable String nome, @RequestBody Fornecedor fornecedor) {
+    lista.updatePorNome(nome, fornecedor);
   }
 }
