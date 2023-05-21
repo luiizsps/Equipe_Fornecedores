@@ -76,6 +76,11 @@ public class FornecedoresController {
   }
   */
 
+  @GetMapping(value = "/nameandcnpj")
+  public ArrayList<String> nameAndCNPJ() {
+    return lista.listNameAndCnpj();
+  }
+
   @DeleteMapping(value = "/remove/cnpj:{cnpj}")
   public Object deleteByCNPJ(@PathVariable String cnpj) {
     Object fornecedor = lista.buscaPorCNPJ(cnpj);
