@@ -49,8 +49,8 @@ public class ListaFornecedor {
     return FORNECEDOR_NAO_ENCONTRADO;
   }
 
-  // Função de busca por parte do nome
-  public ArrayList<Fornecedor> buscaPorParteDoNome(String parteDoNome) {
+   // Função de busca por parte do nome
+   public ArrayList<Fornecedor> buscaPorParteDoNome(String parteDoNome) {
     ArrayList<Fornecedor> fornecedores = new ArrayList<>();
     String parteNome = parteDoNome.replace(" ", "");
     int size = parteNome.length();
@@ -60,13 +60,62 @@ public class ListaFornecedor {
       if(nome.length() >= size) {
         String part = nome.substring(0, size);
         if(part.equalsIgnoreCase(parteNome)) {
-          fornecedores.add(fornecedor);
+          if(!fornecedores.contains(fornecedor)) {
+            fornecedores.add(fornecedor);
+          }
         }
       }
     }
 
     return fornecedores;
   }
+
+  // Função de busca por parte do cnpj
+  public ArrayList<Fornecedor> buscaPorPartedoCNPJ(String parteDoCNPJ) {
+    ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+    String parteCNPJ = parteDoCNPJ.replace(" ", "");
+
+    
+    int size = parteCNPJ.length();
+    
+    for(Fornecedor fornecedor : listaDeFornecedores) {
+      String cnpj = fornecedor.getCnpj().replace(" ", "");
+      if(cnpj.length() >= size) {
+        String part = cnpj.substring(0, size);
+        if(part.equalsIgnoreCase(parteCNPJ)) {
+          if(!fornecedores.contains(fornecedor)) {
+            fornecedores.add(fornecedor);
+          }
+        }
+      }
+    }
+
+    return fornecedores;
+  }
+
+  // Função de busca por parte do nome ou cnpj
+  public ArrayList<Fornecedor> buscaPorPartedoNomeOuCNPJ(String parteDoNomeOuCNPJ) {
+    ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+    String parteCNPJouNome = parteDoNomeOuCNPJ.replace(" ", "");
+    int size = parteCNPJouNome.length();
+    
+    for(Fornecedor fornecedor : listaDeFornecedores) {
+      String nome = fornecedor.getNome().replace(" ", "");
+      String cnpj = fornecedor.getCnpj();
+      if(nome.length() >= size && cnpj.length() >= size) {
+        String partNome = nome.substring(0, size);
+        String partCNPJ = cnpj.substring(0, size);
+        if(partNome.equalsIgnoreCase(parteCNPJouNome) || partCNPJ.equalsIgnoreCase(parteCNPJouNome)) {
+          if(!fornecedores.contains(fornecedor)) {
+            fornecedores.add(fornecedor);
+          }
+        }
+      }
+    }
+    
+    return fornecedores;
+  }
+
 
   // ********** REMOVER ************ //
  

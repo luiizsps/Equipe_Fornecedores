@@ -2,6 +2,7 @@ package br.edu.ufrb.gcet236.equipe_fornecedores_final.Controllers;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,12 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufrb.gcet236.equipe_fornecedores_final.Fornecedor;
 import br.edu.ufrb.gcet236.equipe_fornecedores_final.ListaFornecedor;
 
+
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/fornecedores")
 public class FornecedoresController {
   ListaFornecedor lista = new ListaFornecedor();
@@ -29,16 +33,34 @@ public class FornecedoresController {
     return lista.getListaDeFornecedores();
   }
 
+  @GetMapping(value = "/nameandcnpj")
+  public ArrayList<String> nameAndCNPJ() {
+    return lista.listNameAndCnpj();
+  }
+
+  @GetMapping(value = "/search")
+  public ArrayList<Fornecedor> search(
+          @RequestParam(value = "search-select", required = false) String searchSelect,
+          @RequestParam(value = "search-fornecedor", required = false) String searchFornecedor
+  ) {
+      if(searchSelect.replace(" ", "").equalsIgnoreCase("CNPJ")) {
+        return lista.buscaPorPartedoCNPJ(searchFornecedor);
+      }
+      else if(searchSelect.replace(" ", "").equalsIgnoreCase("Nome")) {
+        return lista.buscaPorParteDoNome(searchFornecedor);
+      }
+      else {
+        return lista.buscaPorPartedoNomeOuCNPJ(searchFornecedor);
+      }
+  }
+
+
+  /* 
   @GetMapping(value = "/search/cnpj:{cnpj}")
   public Object searchByCNPJ(@PathVariable String cnpj) {
     Object resultado = lista.buscaPorCNPJ(cnpj);
 
     return resultado;
-  }
-
-  @GetMapping(value = "/nameandcnpj")
-  public ArrayList<String> nameAndCNPJ() {
-    return lista.listNameAndCnpj();
   }
 
   @GetMapping(value = "/search/name:{name}")
@@ -52,6 +74,7 @@ public class FornecedoresController {
   public ArrayList<Fornecedor> searchByPartOfName(@PathVariable String name) {
     return lista.buscaPorParteDoNome(name);
   }
+  */
 
   @DeleteMapping(value = "/remove/cnpj:{cnpj}")
   public Object deleteByCNPJ(@PathVariable String cnpj) {
